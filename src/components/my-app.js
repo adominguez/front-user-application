@@ -50,25 +50,20 @@ class MyApp extends connect(store)(LitElement) {
       css`
         :host {
           display: block;
-
           --app-drawer-width: 256px;
-
           --app-primary-color: #E91E63;
           --app-secondary-color: #293237;
           --app-dark-text-color: var(--app-secondary-color);
           --app-light-text-color: white;
-          --app-section-even-color: transparent;
-          --app-section-odd-color: transparent;
-
+          --app-section-even-color: #f7f7f7;
+          --app-section-odd-color: white;
           --app-header-background-color: white;
           --app-header-text-color: var(--app-dark-text-color);
           --app-header-selected-color: var(--app-primary-color);
-
           --app-drawer-background-color: var(--app-secondary-color);
           --app-drawer-text-color: var(--app-light-text-color);
           --app-drawer-selected-color: #78909C;
         }
-
         app-header {
           position: fixed;
           top: 0;
@@ -79,11 +74,9 @@ class MyApp extends connect(store)(LitElement) {
           color: var(--app-header-text-color);
           border-bottom: 1px solid #eee;
         }
-
         .toolbar-top {
           background-color: var(--app-header-background-color);
         }
-
         [main-title] {
           font-family: 'Pacifico';
           text-transform: lowercase;
@@ -93,11 +86,9 @@ class MyApp extends connect(store)(LitElement) {
           match that button */
           padding-right: 44px;
         }
-
         .toolbar-list {
           display: none;
         }
-
         .toolbar-list > a {
           display: inline-block;
           color: var(--app-header-text-color);
@@ -105,12 +96,10 @@ class MyApp extends connect(store)(LitElement) {
           line-height: 30px;
           padding: 4px 24px;
         }
-
         .toolbar-list > a[selected] {
           color: var(--app-header-selected-color);
           border-bottom: 4px solid var(--app-header-selected-color);
         }
-
         .menu-btn {
           background: none;
           border: none;
@@ -119,7 +108,6 @@ class MyApp extends connect(store)(LitElement) {
           height: 44px;
           width: 44px;
         }
-
         .drawer-list {
           box-sizing: border-box;
           width: 100%;
@@ -128,7 +116,6 @@ class MyApp extends connect(store)(LitElement) {
           background: var(--app-drawer-background-color);
           position: relative;
         }
-
         .drawer-list > a {
           display: block;
           text-decoration: none;
@@ -136,55 +123,41 @@ class MyApp extends connect(store)(LitElement) {
           line-height: 40px;
           padding: 0 24px;
         }
-
         .drawer-list > a[selected] {
           color: var(--app-drawer-selected-color);
         }
-
         /* Workaround for IE11 displaying <main> as inline */
         main {
           display: block;
         }
-
         .main-content {
           padding-top: 64px;
-          min-height: calc(100vh - 104px);
-          background-image: url('./images/assets/bg-spectacle.jpg');
-          background-position: 50% 50%;
-          background-size: cover;
-          box-sizing: border-box;
+          min-height: 100vh;
         }
-
         .page {
           display: none;
         }
-
         .page[active] {
           display: block;
         }
-
         footer {
           padding: 24px;
           background: var(--app-drawer-background-color);
           color: var(--app-drawer-text-color);
           text-align: center;
         }
-
         /* Wide layout: when the viewport width is bigger than 460px, layout
         changes to a wide layout */
         @media (min-width: 460px) {
           .toolbar-list {
             display: block;
           }
-
           .menu-btn {
             display: none;
           }
-
           .main-content {
             padding-top: 107px;
           }
-
           /* The drawer button isn't shown in the wide layout, so we don't
           need to offset the title */
           [main-title] {
@@ -204,7 +177,6 @@ class MyApp extends connect(store)(LitElement) {
           <button class="menu-btn" title="Menu" @click="${this._menuButtonClicked}">${menuIcon}</button>
           <div main-title>${this.appTitle}</div>
         </app-toolbar>
-
         <!-- This gets hidden on a small screen-->
         <nav class="toolbar-list">
           <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
@@ -212,7 +184,6 @@ class MyApp extends connect(store)(LitElement) {
           <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
         </nav>
       </app-header>
-
       <!-- Drawer content -->
       <app-drawer
           .opened="${this._drawerOpened}"
@@ -223,7 +194,6 @@ class MyApp extends connect(store)(LitElement) {
           <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
         </nav>
       </app-drawer>
-
       <!-- Main content -->
       <main role="main" class="main-content">
         <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
@@ -231,11 +201,9 @@ class MyApp extends connect(store)(LitElement) {
         <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
         <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
       </main>
-
       <footer>
         <p>Made with &hearts; by the Polymer team.</p>
       </footer>
-
       <snack-bar ?active="${this._snackbarOpened}">
         You are now ${this._offline ? 'offline' : 'online'}.
       </snack-bar>
