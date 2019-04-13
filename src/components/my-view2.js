@@ -30,14 +30,24 @@ import './counter-element.js';
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
 
+var globalTimeout = null; 
+
 class MyView2 extends connect(store)(PageViewElement) {
 
   static get properties() {
     return {
       /**
+       * Value of delay for use in search in ms
+       */
+      delaySearch:{type: Number},
+      /**
        * Value of search input
        */
       _inputValue: {type: String},
+      /**
+       * this property shows or hide the loading spinner
+       */
+      _loading: {type: Boolean},
       /**
        * method of search in input, by default is track his values are track | artist
        */
@@ -46,10 +56,6 @@ class MyView2 extends connect(store)(PageViewElement) {
        * Min character to write in input search
        */
       _minCharacterForSearch: {type: Number},
-      /**
-       * this property shows or hide the loading spinner
-       */
-      _loading: {type: Boolean},
       /**
        * List of results with information about artists or tracks
        */
@@ -64,6 +70,7 @@ class MyView2 extends connect(store)(PageViewElement) {
     this._minCharacterForSearch = 3;
     this._loading = false
     this._results = null
+    this.delaySearch = 500
   }
 
   static get styles() {
@@ -104,7 +111,7 @@ class MyView2 extends connect(store)(PageViewElement) {
         <h3>Selecciona como quieres buscar tu canción</h3>
         <button id="track" @click="${this._selectMethod}">Buscar por canción</button>
         <button id="artist" @click="${this._selectMethod}">Buscar por artista</button>
-        <input type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" @focus="${this._getToken}" placeholder="Buscar por ${this._methodOfSearch === 'track' ? 'canción' : 'artista'}"/>
+        <input type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por ${this._methodOfSearch === 'track' ? 'canción' : 'artista'}"/>
         <button ?disabled="${this._inputValue && this._inputValue.length >= this._minCharacterForSearch ? false : true}">Buscar</button>
         <div class="search-results">
           <div class="loading" ?hidden="${!this._loading}">
@@ -145,17 +152,27 @@ class MyView2 extends connect(store)(PageViewElement) {
    * This method is dispatched when input value is changed
    */
   _valueChange(value) {
-    this._inputValue = value.currentTarget.value;
-    var setInterval = '';
-    if(value.currentTarget.value.length >= this._minCharacterForSearch) {
-      this._loading = true;
-      clearTimeout(setInterval);
-      setInterval = setTimeout(store.dispatch(this._methodOfSearch === 'artist' ? searchByArtist(value.currentTarget.value) : searchBytrack(value.currentTarget.value)), 3000);
+    if(this._inputValue !== value.currentTarget.value) {
+      this._inputValue = value.currentTarget.value;
+  
+      if(value.currentTarget.value.length >= this._minCharacterForSearch ) {
+        this._loading = true;
+  
+        if (globalTimeout != null) {
+          clearTimeout(globalTimeout);
+        }
+        globalTimeout = setTimeout((() => {
+          globalTimeout = null;
+          store.dispatch(this._methodOfSearch === 'artist' ? searchByArtist(this._inputValue) : searchBytrack(this._inputValue))
+        }).bind(this), this.delaySearch);  
+      } else if(value.currentTarget.value.length === 0) {
+        store.dispatch(emptyResults());
+      }
     }
   }
 
   /**
-   * This method is dispatched when input is focused
+   * This method dispatch getToken for refresh the Token
    */
   _getToken() {
     store.dispatch(getToken());
@@ -167,6 +184,10 @@ class MyView2 extends connect(store)(PageViewElement) {
 
   getPreviewImage() {
     return `http://icons.veryicon.com/64/Avatar/Free%20Male%20Avatars/Male%20Avatar%20Goatee%20Beard.png`;
+  }
+
+  firstUpdated(changedProperties) {
+    this._getToken();
   }
 
   // This is called every time something is updated in the store.
