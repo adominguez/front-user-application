@@ -1,8 +1,9 @@
-import { SEARCH_BY_ARTIST, SEARCH_BY_TRACK, GET_TOKEN } from '../actions/music.js';
+import { SEARCH_BY_ARTIST, SEARCH_BY_TRACK, GET_TOKEN, EMPTY_RESULTS } from '../actions/music.js';
 
 const INITIAL_STATE = {
     results: null,
-    token: null
+    token: null,
+    loading: false
 };
 
 const music = (state = INITIAL_STATE, action) => {
@@ -11,13 +12,19 @@ const music = (state = INITIAL_STATE, action) => {
       return {
         token: action.token,
       };
+    case EMPTY_RESULTS:
+      return {
+        results: null,
+      };
     case SEARCH_BY_ARTIST:
       return {
         results: action.results,
+        loading: false
       };
-    case SEARCH_BY_TRACK:
+      case SEARCH_BY_TRACK:
       return {
-        results: action.results
+        results: action.results,
+        loading: false
       };
     default:
       return state;

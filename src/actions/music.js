@@ -1,8 +1,9 @@
 export const SEARCH_BY_ARTIST = 'SEARCH_BY_ARTIST';
 export const SEARCH_BY_TRACK = 'SEARCH_BY_TRACK';
 export const GET_TOKEN = 'GET_TOKEN';
+export const EMPTY_RESULTS = 'EMPTY_RESULTS';
 
-import {API_URL, SPOTIFY_API_URL} from '../const.js'
+import {API_URL} from '../const.js'
 
 export const getToken = () => (dispatch) => {
   const authOptions = {
@@ -24,16 +25,17 @@ export const getToken = () => (dispatch) => {
     });
 }
 
-export const searchByArtist = (search, token) => (dispatch) => {
-  const url = `${SPOTIFY_API_URL}/search?q=${search}&type=artist&limit=15`;
-  debugger;
-  const headers = new Headers({
-    'Authorization': 'Bearer ' + token
+export const emptyResults = () => (dispatch) => {
+  dispatch({
+    type: EMPTY_RESULTS,
   });
+}
+
+export const searchByArtist = (search, token) => (dispatch) => {
+  const url = `${API_URL}/artists/${search}`;
 
   const options = {
     method: 'GET',
-    headers: headers,
     cache: 'default',
     json: true
   };
@@ -52,14 +54,10 @@ export const searchByArtist = (search, token) => (dispatch) => {
 };
 
 export const searchBytrack = (search, token) => (dispatch) => {
-  const url = `${SPOTIFY_API_URL}/search?q=${search}&type=track&market=ES&limit=15`;
-  const headers = new Headers({
-    'Authorization': 'Bearer ' + token
-  });
+  const url = `${API_URL}/tracks/${search}`;
 
   const options = {
     method: 'GET',
-    headers: headers,
     cache: 'default',
     json: true
   };

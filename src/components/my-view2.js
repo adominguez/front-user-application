@@ -16,7 +16,7 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
 // These are the actions needed by this element.
-import { searchByArtist, searchBytrack, getToken } from '../actions/music.js';
+import { searchByArtist, searchBytrack, getToken, emptyResults } from '../actions/music.js';
 
 // We are lazy loading its reducer.
 import music from '../reducers/music.js';
@@ -31,6 +31,7 @@ import './counter-element.js';
 import { SharedStyles } from './shared-styles.js';
 
 class MyView2 extends connect(store)(PageViewElement) {
+
   static get properties() {
     return {
       /**
@@ -53,10 +54,6 @@ class MyView2 extends connect(store)(PageViewElement) {
        * List of results with information about artists or tracks
        */
       _results: {type: Array},
-      /**
-       * This parameter is required in search, and it must be passed in fetch
-       */
-      _token: {type: String}
     };
   }
 
@@ -113,6 +110,23 @@ class MyView2 extends connect(store)(PageViewElement) {
           <div class="loading" ?hidden="${!this._loading}">
             loading...
           </div>
+          <ul ?hidden="${this._loading}">
+            ${this._results && this._results[this._methodOfSearch === 'track' ? 'tracks' : 'artists'].items.map(i => html`
+              <li>
+              ${i.album ?
+                html`
+                <div class="image">
+                  <img src="${this.getImage(i.album.images) ? this.getImage(i.album.images).url : this.getPreviewImage()}" />
+                </div>
+                <div class="name">${i.name}</div>`:
+                html`
+                <div class="image">
+                  <img src="${this.getImage(i.images) ? this.getImage(i.images).url : this.getPreviewImage()}" />
+                </div>
+                <div class="name">${i.name}</div>`}
+              </li>
+            `)}
+          </ul>
         </div>
       </div>
     `;
@@ -124,6 +138,7 @@ class MyView2 extends connect(store)(PageViewElement) {
   _selectMethod(e) {
       this._methodOfSearch = e.currentTarget.id
       this._inputValue = '';
+      store.dispatch(emptyResults());
   }
 
   /**
@@ -131,10 +146,11 @@ class MyView2 extends connect(store)(PageViewElement) {
    */
   _valueChange(value) {
     this._inputValue = value.currentTarget.value;
+    var setInterval = '';
     if(value.currentTarget.value.length >= this._minCharacterForSearch) {
-      const token = this._token.access_token
       this._loading = true;
-      store.dispatch(this._methodOfSearch === 'artist' ? searchByArtist(value.currentTarget.value, token) : searchBytrack(value.currentTarget.value, token));
+      clearTimeout(setInterval);
+      setInterval = setTimeout(store.dispatch(this._methodOfSearch === 'artist' ? searchByArtist(value.currentTarget.value) : searchBytrack(value.currentTarget.value)), 3000);
     }
   }
 
@@ -145,10 +161,18 @@ class MyView2 extends connect(store)(PageViewElement) {
     store.dispatch(getToken());
   }
 
+  getImage(images) {
+    return images.find(image => image.width === 64 || image.width === 160 || image.width === 320)
+  }
+
+  getPreviewImage() {
+    return `http://icons.veryicon.com/64/Avatar/Free%20Male%20Avatars/Male%20Avatar%20Goatee%20Beard.png`;
+  }
+
   // This is called every time something is updated in the store.
   stateChanged(state) {
     this._results = state.music.results;
-    this._token = state.music.token;
+    this._loading = state.music.loading
   }
 }
 
