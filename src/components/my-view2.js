@@ -16,12 +16,12 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
 // These are the actions needed by this element.
-import { searchByArtist, searchBytrack } from '../actions/search-results.js';
+import { searchByArtist, searchBytrack, getToken } from '../actions/music.js';
 
 // We are lazy loading its reducer.
-import counter from '../reducers/counter.js';
+import music from '../reducers/music.js';
 store.addReducers({
-  counter
+  music
 });
 
 // These are the elements needed by this element.
@@ -41,8 +41,22 @@ class MyView2 extends connect(store)(PageViewElement) {
        * method of search in input, by default is track his values are track | artist
        */
       _methodOfSearch: {type: String},
-      minCharacterForSearch: {type: Number},
-      _loading: {type: Boolean}
+      /**
+       * Min character to write in input search
+       */
+      _minCharacterForSearch: {type: Number},
+      /**
+       * this property shows or hide the loading spinner
+       */
+      _loading: {type: Boolean},
+      /**
+       * List of results with information about artists or tracks
+       */
+      _results: {type: Array},
+      /**
+       * This parameter is required in search, and it must be passed in fetch
+       */
+      _token: {type: String}
     };
   }
 
@@ -50,8 +64,9 @@ class MyView2 extends connect(store)(PageViewElement) {
     super();
     this._methodOfSearch = 'track';
     this._inputValue = null;
-    this.minCharacterForSearch = 3;
+    this._minCharacterForSearch = 3;
     this._loading = false
+    this._results = null
   }
 
   static get styles() {
@@ -92,8 +107,8 @@ class MyView2 extends connect(store)(PageViewElement) {
         <h3>Selecciona como quieres buscar tu canción</h3>
         <button id="track" @click="${this._selectMethod}">Buscar por canción</button>
         <button id="artist" @click="${this._selectMethod}">Buscar por artista</button>
-        <input type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por ${this._methodOfSearch === 'track' ? 'canción' : 'artista'}"/>
-        <button ?disabled="${this._inputValue && this._inputValue.length >= this.minCharacterForSearch ? false : true}">Buscar</button>
+        <input type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" @focus="${this._getToken}" placeholder="Buscar por ${this._methodOfSearch === 'track' ? 'canción' : 'artista'}"/>
+        <button ?disabled="${this._inputValue && this._inputValue.length >= this._minCharacterForSearch ? false : true}">Buscar</button>
         <div class="search-results">
           <div class="loading" ?hidden="${!this._loading}">
             loading...
@@ -103,31 +118,37 @@ class MyView2 extends connect(store)(PageViewElement) {
     `;
   }
 
+  /**
+   * This method is dispatched when artist or track button is selected
+   */
   _selectMethod(e) {
       this._methodOfSearch = e.currentTarget.id
+      this._inputValue = '';
   }
 
+  /**
+   * This method is dispatched when input value is changed
+   */
   _valueChange(value) {
     this._inputValue = value.currentTarget.value;
-    if(value.currentTarget.value.length >= this.minCharacterForSearch) {
+    if(value.currentTarget.value.length >= this._minCharacterForSearch) {
+      const token = this._token.access_token
       this._loading = true;
-      store.dispatch(this._methodOfSearch === 'artist' ? searchByArtist() : searchBytrack());
+      store.dispatch(this._methodOfSearch === 'artist' ? searchByArtist(value.currentTarget.value, token) : searchBytrack(value.currentTarget.value, token));
     }
-
   }
 
-  /*_counterIncremented() {
-    store.dispatch(increment());
+  /**
+   * This method is dispatched when input is focused
+   */
+  _getToken() {
+    store.dispatch(getToken());
   }
-
-  _counterDecremented() {
-    store.dispatch(decrement());
-  }*/
 
   // This is called every time something is updated in the store.
   stateChanged(state) {
-    this._clicks = state.counter.clicks;
-    this._value = state.counter.value;
+    this._results = state.music.results;
+    this._token = state.music.token;
   }
 }
 
