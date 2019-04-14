@@ -32,15 +32,15 @@ export const SharedStyles = css`
   }
 
   h2 {
-    font-size: 24px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
     text-align: center;
     color: var(--app-dark-text-color);
   }
-
-  @media (min-width: 460px) {
-    h2 {
-      font-size: 36px;
-    }
+  
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
   }
 
   .circle {
