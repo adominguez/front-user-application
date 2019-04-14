@@ -47,122 +47,121 @@ class MyApp extends connect(store)(LitElement) {
 
   static get styles() {
     return [
-      css`
+      css `
         :host {
           display: block;
-          --app-drawer-width: 256px;
-          --app-primary-color: #E91E63;
-          --app-secondary-color: #293237;
-          --app-dark-text-color: var(--app-secondary-color);
-          --app-light-text-color: white;
-          --app-section-even-color: #f7f7f7;
-          --app-section-odd-color: white;
-          --app-header-background-color: white;
-          --app-header-text-color: var(--app-dark-text-color);
-          --app-header-selected-color: var(--app-primary-color);
-          --app-drawer-background-color: var(--app-secondary-color);
-          --app-drawer-text-color: var(--app-light-text-color);
-          --app-drawer-selected-color: #78909C;
         }
-        app-header {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          text-align: center;
-          background-color: var(--app-header-background-color);
-          color: var(--app-header-text-color);
-          border-bottom: 1px solid #eee;
+        .app-wrap {
+          height: 100vh;
+          margin: 0 auto 0 auto;
+          border-bottom-width: 70px;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
         }
-        .toolbar-top {
-          background-color: var(--app-header-background-color);
+        
+        .app-wrap > * {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1 1 auto;
+              -ms-flex: 1 1 auto;
+                  flex: 1 1 auto;
         }
-        [main-title] {
-          font-family: 'Pacifico';
-          text-transform: lowercase;
-          font-size: 30px;
-          /* In the narrow layout, the toolbar is offset by the width of the
-          drawer button, and the text looks not centered. Add a padding to
-          match that button */
-          padding-right: 44px;
+        
+        .content {
+          background: white;
+          box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+          line-height: 1.6;
+          overflow-y: scroll;
+          -webkit-overflow-scrolling:touch;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          overflow-x: hidden;
         }
-        .toolbar-list {
-          display: none;
+        
+        .content > * {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1 1;
+              -ms-flex: 1 1;
+                  flex: 1 1;
+          max-width: 100%;
         }
-        .toolbar-list > a {
-          display: inline-block;
-          color: var(--app-header-text-color);
-          text-decoration: none;
-          line-height: 30px;
-          padding: 4px 24px;
-        }
-        .toolbar-list > a[selected] {
-          color: var(--app-header-selected-color);
-          border-bottom: 4px solid var(--app-header-selected-color);
-        }
-        .menu-btn {
-          background: none;
-          border: none;
-          fill: var(--app-header-text-color);
-          cursor: pointer;
-          height: 44px;
-          width: 44px;
-        }
-        .drawer-list {
-          box-sizing: border-box;
-          width: 100%;
-          height: 100%;
-          padding: 24px;
-          background: var(--app-drawer-background-color);
-          position: relative;
-        }
-        .drawer-list > a {
-          display: block;
-          text-decoration: none;
-          color: var(--app-drawer-text-color);
-          line-height: 40px;
-          padding: 0 24px;
-        }
-        .drawer-list > a[selected] {
-          color: var(--app-drawer-selected-color);
-        }
-        /* Workaround for IE11 displaying <main> as inline */
-        main {
-          display: block;
-        }
-        .main-content {
-          padding-top: 64px;
-          min-height: 100vh;
-        }
+
         .page {
           display: none;
         }
         .page[active] {
           display: block;
         }
-        footer {
-          padding: 24px;
-          background: var(--app-drawer-background-color);
-          color: var(--app-drawer-text-color);
+        
+        
+        .icon-bar a {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1;
+              -ms-flex: 1;
+                  flex: 1;
           text-align: center;
+          padding: 1.5rem;
+          border-left: 1px solid rgba(0,0,0,0.1);
+          background-color: #26272a;
+          color: #fff;
+          text-decoration: none;
         }
-        /* Wide layout: when the viewport width is bigger than 460px, layout
-        changes to a wide layout */
-        @media (min-width: 460px) {
-          .toolbar-list {
-            display: block;
-          }
-          .menu-btn {
-            display: none;
-          }
-          .main-content {
-            padding-top: 107px;
-          }
-          /* The drawer button isn't shown in the wide layout, so we don't
-          need to offset the title */
-          [main-title] {
-            padding-right: 0px;
-          }
+
+        .icon-bar a:hover, .icon-bar a.selected {
+          background-color:#1e1f21;
+          color: #47af7c;
+        }
+        
+        
+        .icon-bar a:first-child {
+          border-left: 0;
+        }
+        
+        .app-header {
+          background-color: #26272a;
+          color: #fff;
+          max-height: 65px;
+          box-sizing: border-box;
+          padding: 1rem;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+              -ms-flex-pack: justify;
+                  justify-content: space-between;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          text-align: center;
+          z-index: 2;
+        }
+        
+        .icon-bar {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-basis: 60px;
+              -ms-flex-preferred-size: 60px;
+                  flex-basis: 60px;
+          box-sizing: border-box;
+          max-height: 60px;
         }
       `
     ];
@@ -171,41 +170,33 @@ class MyApp extends connect(store)(LitElement) {
   render() {
     // Anything that's related to rendering should be done in here.
     return html`
-      <!-- Header -->
-      <app-header fixed condenses reveals effects="waterfall">
-        <app-toolbar class="toolbar-top">
+      <div class="app-wrap">
+        <header class="app-header">
           <button class="menu-btn" title="Menu" @click="${this._menuButtonClicked}">${menuIcon}</button>
-          <div main-title>${this.appTitle}</div>
-        </app-toolbar>
-        <!-- This gets hidden on a small screen-->
-        <nav class="toolbar-list">
-          <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
-          <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
-          <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
+
+          <h1>${this.appTitle}</h1>
+
+          <a href="#" class="button">
+          Info
+            <i class="fa fa-cog"></i>
+          </a>
+        </header>
+
+        <main role="main" class="content">
+          <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
+          <my-view2 class="page" ?active="${this._page === 'view2'}"></my-view2>
+          <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
+          <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
+        </main>
+
+        <nav class="icon-bar">
+        <a class="${this._page === 'view1' ? 'selected' : ''}" ?selected="${this._page === 'view1'}" href="/view1">Photos</a>
+        <a class="${this._page === 'view2' ? 'selected' : ''}" ?selected="${this._page === 'view2'}" href="/view2">Music</a>
+        <a class="${this._page === 'view3' ? 'selected' : ''}" ?selected="${this._page === 'view3'}" href="/view3">Messages</a>
         </nav>
-      </app-header>
-      <!-- Drawer content -->
-      <app-drawer
-          .opened="${this._drawerOpened}"
-          @opened-changed="${this._drawerOpenedChanged}">
-        <nav class="drawer-list">
-          <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
-          <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
-          <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
-        </nav>
-      </app-drawer>
-      <!-- Main content -->
-      <main role="main" class="main-content">
-        <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
-        <my-view2 class="page" ?active="${this._page === 'view2'}"></my-view2>
-        <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
-        <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
-      </main>
-      <footer>
-        <p>Made with &hearts; by the Polymer team.</p>
-      </footer>
+      </div>
       <snack-bar ?active="${this._snackbarOpened}">
-        You are now ${this._offline ? 'offline' : 'online'}.
+          You are now ${this._offline ? 'offline' : 'online'}.
       </snack-bar>
     `;
   }
@@ -221,7 +212,7 @@ class MyApp extends connect(store)(LitElement) {
     installRouter((location) => store.dispatch(navigate(decodeURIComponent(location.pathname))));
     installOfflineWatcher((offline) => store.dispatch(updateOffline(offline)));
     installMediaQueryWatcher(`(min-width: 460px)`,
-        () => store.dispatch(updateDrawerState(false)));
+      () => store.dispatch(updateDrawerState(false)));
   }
 
   updated(changedProps) {
