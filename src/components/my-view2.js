@@ -65,7 +65,7 @@ class MyView2 extends connect(store)(PageViewElement) {
 
   constructor() {
     super();
-    this._methodOfSearch = 'track';
+    this._methodOfSearch = null;
     this._inputValue = null;
     this._minCharacterForSearch = 3;
     this._loading = false
@@ -82,58 +82,184 @@ class MyView2 extends connect(store)(PageViewElement) {
   render() {
     return html`
       <style>
-        :host {
+        .content-view {
+          width: 100%;
+          display: flex;
           height: 100%;
+          transition: width 0.2s ease, transform 0.2s ease;
+          transition-delay: 0.3s;
+          background-color: #000;
         }
-        h2 {
-          color: #359788!important;
-          letter-spacing: 1px;
-          line-height: 1.2;
+        .content-view.artist {
+          transform: translateX(-50%);
+          width: 200%;
         }
-        h3 {
-          text-align: center;
+        .content-view.track {
+          transform: translateX(0%);
+          width: 200%;
+        }
+        .side {
+          flex: 1;
           color: white;
+          opacity: 0.7;
+          transition: opacity 0.5s ease;
+          transition-delay: 0.6s;
+          position: relative;
         }
-        .content {
-          padding: 2em 2em 2em;
-          margin: 0em auto;
-          min-height: calc(100vh-104px);
-          -webkit-box-shadow: -2px 7px 37px 8px rgba(0,0,0,0.52);
-          -moz-box-shadow: -2px 7px 37px 8px rgba(0,0,0,0.52);
-          box-shadow: -2px 7px 37px 8px rgba(0,0,0,0.52);
-          background: rgba(0, 0, 0, 0.69)!important;
+        .content-view.track .track, .content-view.artist .artist {
+          opacity: 1;
         }
-        :host([hidden]) { display: none; }
+        .track {
+          background-color: #424141;
+        }
+        .artist {
+          background-color: #47af7c;
+        }
+        .option-button {
+          background-color: transparent;
+          background-size: cover;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: 10px solid #1e1e1e;
+          color: #fff;
+          position: absolute;
+          margin: 0 auto;
+          left: 50%;
+          top: 50%;
+          outline: 0;
+          transform: translate(-50%, -50%);
+          padding: 0;
+          transition: transform 0.2s ease, 
+                      width 0.2s ease,
+                      height 0.2s ease,
+                      left 0.2s ease,
+                      top 0.2s ease,
+                      border 0.2s ease;
+          transition-delay: 0.3s;
+        }
+        .side.track .option-button {
+          background-image: url('../../images/assets/track.svg');
+        }
+        .side.artist .option-button {
+          background-image: url('../../images/assets/artist.svg');
+        }
+        .content-view.artist .artist .option-button, .content-view.track .track .option-button {
+          transform: translate(0, 0);
+          left: 1em;
+          top: 1em;
+          width: 80px;
+          height: 80px;
+          border: 5px solid #1e1e1e;
+        }
+        .view-title {
+          position: absolute;
+          color: #fff;
+          background-color: #26272a;
+          width: 100%;
+          text-align: center;
+          z-index: 1;
+          -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+          -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+          box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+          transition: transform 0.2s ease;
+          transition-delay: 0.6s;
+        }
+        .content-view.artist .view-title, .content-view.track .view-title {
+          transform: translateY(-106px);
+          transition-delay: 0s;
+        }
+        
+        .search-input {
+          font-family: 'Raleway', sans-serif;
+          color: #fff;
+          font-size: 30px;
+          border: 0;
+          background: transparent;
+          -webkit-appearance: none;
+          box-sizing: border-box;
+          outline: 0;
+          font-weight: 200;
+          margin-top: 100px;
+          padding: 0.2em;
+          width: 100%;
+          opacity: 0;
+          transition-delay: 0.6s;
+          transition: opacity 0.2s ease;
+        }
+        .search-input.input-track, .search-input.input-artist {
+          opacity: 1;
+        }
+        .close-button {
+          font-weight: 700;
+          font-family: 'Raleway', sans-serif;
+          font-size: 30px;
+          position: absolute;
+          right: 0.5em;
+          top: 0.5em;
+          opacity: 0;
+          transition-delay: 0.6s;
+          transition: opacity 0.2s ease;
+          color: #fff;
+          background-color: rgba(0, 0, 0, 0.2);
+          border: 0;
+          border-radius: 50%;
+          width:40px;
+          height: 40px;
+        }
+        .close-button.button-artist, .close-button.button-track {
+          opacity: 1;
+        }
       </style>
 
-      <div class="content">
-        <h2>Envía la canción que quieras</h2>
-        <h3>Selecciona como quieres buscar tu canción</h3>
-        <button id="track" @click="${this._selectMethod}">Buscar por canción</button>
-        <button id="artist" @click="${this._selectMethod}">Buscar por artista</button>
-        <input type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por ${this._methodOfSearch === 'track' ? 'canción' : 'artista'}"/>
-        <button ?disabled="${this._inputValue && this._inputValue.length >= this._minCharacterForSearch ? false : true}">Buscar</button>
-        <div class="search-results">
-          <div class="loading" ?hidden="${!this._loading}">
-            loading...
-          </div>
-          <ul ?hidden="${this._loading}">
-            ${this._results && this._results[this._methodOfSearch === 'track' ? 'tracks' : 'artists'].items.map(i => html`
-              <li>
-              ${i.album ?
-                html`
-                <div class="image">
-                  <img src="${this.getImage(i.album.images) ? this.getImage(i.album.images).url : this.getPreviewImage()}" />
-                </div>
-                <div class="name">${i.name}</div>`:
-                html`
-                <div class="image">
-                  <img src="${this.getImage(i.images) ? this.getImage(i.images).url : this.getPreviewImage()}" />
-                </div>
-                <div class="name">${i.name}</div>`}
-              </li>
-            `)}
-          </ul>
+      <div class="content-view ${this._methodOfSearch}">
+        <div class="view-title">
+          <h2>¿Qué música quieres escuchar?</h2>
+          <h3>Selecciona como quieres buscar...</h3>
+        </div>
+        <div class="side track">
+          <button id="track" class="option-button" @click="${this._selectMethod}"></button>
+          ${this._methodOfSearch === 'track' ? html`
+            <button id="button-track" class="close-button" @click="${this._selectMethod}">X</button>
+            <input id="input-track" class="search-input" type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por canción"/>
+            <div class="search-results">
+              <div class="loading" ?hidden="${!this._loading}">
+                loading...
+              </div>
+              <ul ?hidden="${this._loading}">
+                ${this._results && this._results['tracks'].items.map(i => html`
+                  <li>
+                    <div class="image">
+                      <img src="${this.getImage(i.album.images) ? this.getImage(i.album.images).url : this.getPreviewImage()}" />
+                    </div>
+                    <div class="name">${i.name}</div>
+                  </li>
+                `)}
+              </ul>
+            </div>`
+          : ``}
+        </div>
+        <div class="side artist">
+          <button id="artist" class="option-button" @click="${this._selectMethod}"></button>
+          ${this._methodOfSearch === 'artist' ? html`
+            <button id="button-artist" class="close-button" @click="${this._selectMethod}">X</button>
+            <input id="input-artist" class="search-input" type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por artista"/>
+            <div class="search-results">
+              <div class="loading" ?hidden="${!this._loading}">
+                loading...
+              </div>
+              <ul ?hidden="${this._loading}">
+                ${this._results && this._results['artists'].items.map(i => html`
+                  <li>
+                    <div class="image">
+                      <img src="${this.getImage(i.images) ? this.getImage(i.images).url : this.getPreviewImage()}" />
+                    </div>
+                    <div class="name">${i.name}</div>
+                  </li>
+                `)}
+              </ul>
+            </div>`
+          : ``}
         </div>
       </div>
     `;
@@ -145,6 +271,11 @@ class MyView2 extends connect(store)(PageViewElement) {
   _selectMethod(e) {
       this._methodOfSearch = e.currentTarget.id
       this._inputValue = '';
+      setTimeout((()=> {
+        this.shadowRoot.getElementById(`input-${this._methodOfSearch}`).focus();
+        this.shadowRoot.getElementById(`input-${this._methodOfSearch}`).classList.add(`input-${this._methodOfSearch}`);
+        this.shadowRoot.getElementById(`button-${this._methodOfSearch}`).classList.add(`button-${this._methodOfSearch}`);
+      }).bind(this), 500)
       store.dispatch(emptyResults());
   }
 
