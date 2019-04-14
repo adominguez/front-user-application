@@ -25,7 +25,7 @@ store.addReducers({
 });
 
 // These are the elements needed by this element.
-import './counter-element.js';
+import './app-loading.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -223,9 +223,7 @@ class MyView2 extends connect(store)(PageViewElement) {
             <button id="button-track" class="close-button" @click="${this._selectMethod}">X</button>
             <input id="input-track" class="search-input" type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por canción"/>
             <div class="search-results">
-              <div class="loading" ?hidden="${!this._loading}">
-                loading...
-              </div>
+              <app-loading ?hidden="${!this._loading}"></app-loading>
               <ul ?hidden="${this._loading}">
                 ${this._results && this._results['tracks'].items.map(i => html`
                   <li>
@@ -245,9 +243,7 @@ class MyView2 extends connect(store)(PageViewElement) {
             <button id="button-artist" class="close-button" @click="${this._selectMethod}">X</button>
             <input id="input-artist" class="search-input" type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por artista"/>
             <div class="search-results">
-              <div class="loading" ?hidden="${!this._loading}">
-                loading...
-              </div>
+              <app-loading ?hidden="${!this._loading}"></app-loading>
               <ul ?hidden="${this._loading}">
                 ${this._results && this._results['artists'].items.map(i => html`
                   <li>
