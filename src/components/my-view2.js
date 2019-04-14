@@ -26,6 +26,7 @@ store.addReducers({
 
 // These are the elements needed by this element.
 import './app-loading.js';
+import './result-item-card.js'
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -114,6 +115,13 @@ class MyView2 extends connect(store)(PageViewElement) {
         }
         .artist {
           background-color: #47af7c;
+        }
+        .ul-result {
+          padding: 1em;
+        }
+        .ul-result li {
+          list-style: none;
+          margin-bottom: 10px;
         }
         .option-button {
           background-color: transparent;
@@ -224,13 +232,10 @@ class MyView2 extends connect(store)(PageViewElement) {
             <input id="input-track" class="search-input" type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por canción"/>
             <div class="search-results">
               <app-loading ?hidden="${!this._loading}"></app-loading>
-              <ul ?hidden="${this._loading}">
+              <ul class="ul-result" ?hidden="${this._loading}">
                 ${this._results && this._results['tracks'].items.map(i => html`
                   <li>
-                    <div class="image">
-                      <img src="${this.getImage(i.album.images) ? this.getImage(i.album.images).url : this.getPreviewImage()}" />
-                    </div>
-                    <div class="name">${i.name}</div>
+                    <result-item-card heading="${i.name}" subheading="${i.artists[0].name}" image="${this.getImage(i.album.images) ? this.getImage(i.album.images).url : ''}"></result-item-card>
                   </li>
                 `)}
               </ul>
@@ -244,13 +249,10 @@ class MyView2 extends connect(store)(PageViewElement) {
             <input id="input-artist" class="search-input" type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por artista"/>
             <div class="search-results">
               <app-loading ?hidden="${!this._loading}"></app-loading>
-              <ul ?hidden="${this._loading}">
+              <ul class="ul-result" ?hidden="${this._loading}">
                 ${this._results && this._results['artists'].items.map(i => html`
                   <li>
-                    <div class="image">
-                      <img src="${this.getImage(i.images) ? this.getImage(i.images).url : this.getPreviewImage()}" />
-                    </div>
-                    <div class="name">${i.name}</div>
+                    <result-item-card heading="${i.name}" subheading="${i.genres ? i.genres.join(", ") : ''}" image="${this.getImage(i.images) ? this.getImage(i.images).url : ''}"></result-item-card>
                   </li>
                 `)}
               </ul>
@@ -265,12 +267,14 @@ class MyView2 extends connect(store)(PageViewElement) {
    * This method is dispatched when artist or track button is selected
    */
   _selectMethod(e) {
-      this._methodOfSearch = e.currentTarget.id
+      this._methodOfSearch = (e.currentTarget.id === 'artist' || e.currentTarget.id === 'track') ? e.currentTarget.id : null;
       this._inputValue = '';
       setTimeout((()=> {
-        this.shadowRoot.getElementById(`input-${this._methodOfSearch}`).focus();
-        this.shadowRoot.getElementById(`input-${this._methodOfSearch}`).classList.add(`input-${this._methodOfSearch}`);
-        this.shadowRoot.getElementById(`button-${this._methodOfSearch}`).classList.add(`button-${this._methodOfSearch}`);
+        if(this._methodOfSearch) {
+          this.shadowRoot.getElementById(`input-${this._methodOfSearch}`).focus();
+          this.shadowRoot.getElementById(`input-${this._methodOfSearch}`).classList.add(`input-${this._methodOfSearch}`);
+          this.shadowRoot.getElementById(`button-${this._methodOfSearch}`).classList.add(`button-${this._methodOfSearch}`);
+        }
       }).bind(this), 500)
       store.dispatch(emptyResults());
   }
@@ -307,10 +311,6 @@ class MyView2 extends connect(store)(PageViewElement) {
 
   getImage(images) {
     return images.find(image => image.width === 64 || image.width === 160 || image.width === 320)
-  }
-
-  getPreviewImage() {
-    return `http://icons.veryicon.com/64/Avatar/Free%20Male%20Avatars/Male%20Avatar%20Goatee%20Beard.png`;
   }
 
   firstUpdated(changedProperties) {
