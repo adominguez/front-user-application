@@ -2,6 +2,7 @@ export const SEARCH_BY_ARTIST = 'SEARCH_BY_ARTIST';
 export const SEARCH_BY_TRACK = 'SEARCH_BY_TRACK';
 export const GET_TOKEN = 'GET_TOKEN';
 export const EMPTY_RESULTS = 'EMPTY_RESULTS';
+export const SELECT_ARTIST = 'SELECT_ARTIST';
 
 import {API_URL} from '../const.js'
 
@@ -74,3 +75,30 @@ export const searchBytrack = (search, token) => (dispatch) => {
       });
     });
 };
+
+export const selectArtist = () => (dispatch) => {
+  const id = event.detail.id;
+
+  const url = `${API_URL}/artists/${id}/top-track`;
+
+  const options = {
+    method: 'GET',
+    cache: 'default',
+    json: true
+  };
+
+  const myRequest = new Request(url, options);
+
+  fetch(myRequest)
+    .then(function (response) {
+      return response.json();
+    }).then(function (tracks) {
+      dispatch({
+        type: SELECT_ARTIST,
+        artistSelected: {
+          id,
+          ...tracks
+        },
+      });
+    });
+}

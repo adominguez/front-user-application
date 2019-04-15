@@ -16,7 +16,7 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
 // These are the actions needed by this element.
-import { searchByArtist, searchBytrack, getToken, emptyResults } from '../actions/music.js';
+import { searchByArtist, searchBytrack, getToken, emptyResults, selectArtist } from '../actions/music.js';
 
 // We are lazy loading its reducer.
 import music from '../reducers/music.js';
@@ -61,6 +61,10 @@ class MyView2 extends connect(store)(PageViewElement) {
        * List of results with information about artists or tracks
        */
       _results: {type: Array},
+      /**
+       * this object has a selected artist and it´s must be filled when an artist card is selected
+       */
+      _artistSelected: {type: Array},
     };
   }
 
@@ -69,9 +73,10 @@ class MyView2 extends connect(store)(PageViewElement) {
     this._methodOfSearch = null;
     this._inputValue = null;
     this._minCharacterForSearch = 3;
-    this._loading = false
-    this._results = null
-    this.delaySearch = 500
+    this._loading = false;
+    this._results = null;
+    this.delaySearch = 500;
+    this._artistSelected = null;
   }
 
   static get styles() {
@@ -122,6 +127,9 @@ class MyView2 extends connect(store)(PageViewElement) {
         .ul-result li {
           list-style: none;
           margin-bottom: 10px;
+        }
+        .result-item-selected {
+          background-color: red;
         }
         .option-button {
           background-color: transparent;
@@ -249,18 +257,30 @@ class MyView2 extends connect(store)(PageViewElement) {
             <input id="input-artist" class="search-input" type="text" @keyup="${this._valueChange}" .value="${this._inputValue}" placeholder="Buscar por artista"/>
             <div class="search-results">
               <app-loading ?hidden="${!this._loading}"></app-loading>
-              <ul class="ul-result" ?hidden="${this._loading}">
-                ${this._results && this._results['artists'].items.map(i => html`
-                  <li>
-                    <result-item-card heading="${i.name}" subheading="${i.genres ? i.genres.join(", ") : ''}" image="${this.getImage(i.images) ? this.getImage(i.images).url : ''}"></result-item-card>
-                  </li>
-                `)}
-              </ul>
+              <div class="result">
+                <ul class="ul-result" ?hidden="${this._loading}">
+                  ${this._results && this._results['artists'].items.map(i => html`
+                    <li class="${this._artistSelected && this._artistSelected.id === i.id ? 'result-item-selected' : ''}">
+                      <result-item-card 
+                        heading="${i.name}"
+                        id="${i.id}"
+                        subheading="${i.genres ? i.genres.join(", ") : ''}"
+                        selected="${this._artistSelected && this._artistSelected.id === i.id ? true : false}"
+                        image="${this.getImage(i.images) ? this.getImage(i.images).url : ''}"></result-item-card>
+                    </li>
+                  `)}
+                </ul>
+              </div>
             </div>`
           : ``}
         </div>
       </div>
     `;
+  }
+
+
+  _selectArtist(e) {
+    store.dispatch(selectArtist(e.detail))
   }
 
   /**
@@ -302,6 +322,15 @@ class MyView2 extends connect(store)(PageViewElement) {
     }
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener('select-artist', this._selectArtist);
+  }
+  disconnectedCallback() {
+    document.removeEventListener('select-artist', this._selectArtist);
+    super.disconnectedCallback();
+  }
+
   /**
    * This method dispatch getToken for refresh the Token
    */
@@ -321,6 +350,7 @@ class MyView2 extends connect(store)(PageViewElement) {
   stateChanged(state) {
     this._results = state.music.results;
     this._loading = state.music.loading
+    this._artistSelected = state.music.artistSelected
   }
 }
 

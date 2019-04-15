@@ -23,7 +23,11 @@ class ResultItemCard extends LitElement {
       /* Item image */
       image: { type: String },
       /* Empty image */
-      emptyImage: { type: String }
+      emptyImage: { type: String },
+      /* selected card */
+      selected: { type: Boolean },
+      /* id card */
+      id: {type: String}
     }
   }
 
@@ -34,6 +38,10 @@ class ResultItemCard extends LitElement {
           position: relative;
           font-family: 'Raleway', sans-serif;
           display: block;
+          width: 100%;
+          border: 0;
+          background-color: transparent;
+          padding: 0;
         }
         .material-card-header {
           padding: 1em;
@@ -67,7 +75,7 @@ class ResultItemCard extends LitElement {
 
   render() {
     return html`
-      <article class="material-card">
+      <button role="article" @click="${this.selectCard}" class="material-card">
         <div class="material-card-header">
           <div class="material-card-header-image" style="background-image: url('${this.image || this.emptyImage}')">
           </div>
@@ -79,7 +87,7 @@ class ResultItemCard extends LitElement {
             </h3>
           </div>
         </div>
-      </article>
+      </button>
     `;
   }
 
@@ -87,8 +95,19 @@ class ResultItemCard extends LitElement {
     super();
     this.heading = '';
     this.subheading = '';
+    this.id= ''
     this.image = null;
     this.emptyImage = '../../images/assets/empty-image.svg';
+    this.selected = false;
+  }
+
+  selectCard() {
+    this.selected = true;
+    let selectCard = new CustomEvent('select-artist', { 
+      detail: { id: this.id, selected: false },
+      bubbles: true, 
+      composed: true });
+    this.dispatchEvent(selectCard);
   }
 }
 
