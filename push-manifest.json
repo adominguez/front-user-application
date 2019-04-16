@@ -31,13 +31,13 @@
       "weight": 1
     }
   },
-  "/view2": {
+  "/music": {
     "src/components/my-app.js": {
       "crossorigin": "anonymous",
       "type": "script",
       "weight": 1
     },
-    "src/components/my-view2.js": {
+    "src/components/music-view.js": {
       "crossorigin": "anonymous",
       "type": "script",
       "weight": 1

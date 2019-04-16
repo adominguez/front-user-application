@@ -31,9 +31,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <my-view1 active></my-view1>
       </template>
     </test-fixture>
-    <test-fixture id="view2">
+    <test-fixture id="music">
       <template>
-        <my-view2 active></my-view2>
+        <music-view active></music-view>
       </template>
     </test-fixture>
     <test-fixture id="view3">
@@ -52,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       import 'axe-core/axe.min.js';
       import {axeReport} from 'pwa-helpers/axe-report.js';
       import '../../src/components/my-view1.js';
-      import '../../src/components/my-view2.js';
+      import '../../src/components/music-view.js';
       import '../../src/components/my-view3.js';
       import '../../src/components/my-view404.js';
 
@@ -62,8 +62,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return axeReport(el);
         });
 
-        test('my-view2', function() {
-          const el = fixture('view2');
+        test('music-view', function() {
+          const el = fixture('music');
           return axeReport(el);
         });
 

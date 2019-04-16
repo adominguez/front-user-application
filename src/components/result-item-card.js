@@ -102,9 +102,9 @@ class ResultItemCard extends LitElement {
   }
 
   selectCard() {
-    this.selected = true;
+    this.selected = !this.selected;
     let selectCard = new CustomEvent('select-artist', { 
-      detail: { id: this.id, selected: false },
+      detail: { id: this.id, selected: this.selected },
       bubbles: true, 
       composed: true });
     this.dispatchEvent(selectCard);

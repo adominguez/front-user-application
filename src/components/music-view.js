@@ -33,7 +33,7 @@ import { SharedStyles } from './shared-styles.js';
 
 var globalTimeout = null; 
 
-class MyView2 extends connect(store)(PageViewElement) {
+class MusicView extends connect(store)(PageViewElement) {
 
   static get properties() {
     return {
@@ -129,7 +129,23 @@ class MyView2 extends connect(store)(PageViewElement) {
           margin-bottom: 10px;
         }
         .result-item-selected {
-          background-color: red;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          left: 0;
+          z-index: 1;
+          height: 100%;
+        }
+        .result-track-grouped {
+          width: 100%;
+          height: 100%;
+          background-color: rgba(50, 50, 50, 0.98 );
+        }
+        .result-track-grouped-ul {
+
+        }
+        .result-track-grouped-li {
+          padding: 10px 0;
         }
         .option-button {
           background-color: transparent;
@@ -260,13 +276,24 @@ class MyView2 extends connect(store)(PageViewElement) {
               <div class="result">
                 <ul class="ul-result" ?hidden="${this._loading}">
                   ${this._results && this._results['artists'].items.map(i => html`
-                    <li class="${this._artistSelected && this._artistSelected.id === i.id ? 'result-item-selected' : ''}">
+                    <li class="${this._isArtistSelected(i) ? 'result-item-selected' : ''}">
                       <result-item-card 
                         heading="${i.name}"
                         id="${i.id}"
                         subheading="${i.genres ? i.genres.join(", ") : ''}"
-                        selected="${this._artistSelected && this._artistSelected.id === i.id ? true : false}"
+                        selected="${this._isArtistSelected(i) ? true : false}"
                         image="${this.getImage(i.images) ? this.getImage(i.images).url : ''}"></result-item-card>
+
+                      ${this._isArtistSelected(i) ? html`
+                        <div class="result-track-grouped">
+                          <ul class="result-track-grouped-ul">
+                            ${this._artistSelected.tracks.map(track =>html`
+                              <li class="result-track-grouped-li">${track.name}</li>
+                            `)}
+                          </ul>
+                        </div>
+                        `: ''
+                      }
                     </li>
                   `)}
                 </ul>
@@ -281,6 +308,10 @@ class MyView2 extends connect(store)(PageViewElement) {
 
   _selectArtist(e) {
     store.dispatch(selectArtist(e.detail))
+  }
+
+  _isArtistSelected(i) {
+    return this._artistSelected && this._artistSelected.id === i.id
   }
 
   /**
@@ -354,4 +385,4 @@ class MyView2 extends connect(store)(PageViewElement) {
   }
 }
 
-window.customElements.define('my-view2', MyView2);
+window.customElements.define('music-view', MusicView);

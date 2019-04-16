@@ -58,8 +58,8 @@ describe('👀 page screenshots are correct', function() {
     it('/view1', async function() {
       return takeAndCompareScreenshot(page, 'view1', 'wide');
     });
-    it('/view2', async function() {
-      return takeAndCompareScreenshot(page, 'view2', 'wide');
+    it('/music', async function() {
+      return takeAndCompareScreenshot(page, 'music', 'wide');
     });
     it('/view3', async function() {
       return takeAndCompareScreenshot(page, 'view3', 'wide');
@@ -80,8 +80,8 @@ describe('👀 page screenshots are correct', function() {
     it('/view1', async function() {
       return takeAndCompareScreenshot(page, 'view1', 'narrow');
     });
-    it('/view2', async function() {
-      return takeAndCompareScreenshot(page, 'view2', 'narrow');
+    it('/music', async function() {
+      return takeAndCompareScreenshot(page, 'music', 'narrow');
     });
     it('/view3', async function() {
       return takeAndCompareScreenshot(page, 'view3', 'narrow');
