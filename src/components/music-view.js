@@ -136,17 +136,6 @@ class MusicView extends connect(store)(PageViewElement) {
           z-index: 1;
           height: 100%;
         }
-        .result-track-grouped {
-          width: 100%;
-          height: 100%;
-          background-color: rgba(50, 50, 50, 0.98 );
-        }
-        .result-track-grouped-ul {
-
-        }
-        .result-track-grouped-li {
-          padding: 10px 0;
-        }
         .option-button {
           background-color: transparent;
           background-size: cover;
@@ -276,24 +265,15 @@ class MusicView extends connect(store)(PageViewElement) {
               <div class="result">
                 <ul class="ul-result" ?hidden="${this._loading}">
                   ${this._results && this._results['artists'].items.map(i => html`
-                    <li class="${this._isArtistSelected(i) ? 'result-item-selected' : ''}">
-                      <result-item-card 
-                        heading="${i.name}"
-                        id="${i.id}"
-                        subheading="${i.genres ? i.genres.join(", ") : ''}"
-                        selected="${this._isArtistSelected(i) ? true : false}"
-                        image="${this.getImage(i.images) ? this.getImage(i.images).url : ''}"></result-item-card>
-
-                      ${this._isArtistSelected(i) ? html`
-                        <div class="result-track-grouped">
-                          <ul class="result-track-grouped-ul">
-                            ${this._artistSelected.tracks.map(track =>html`
-                              <li class="result-track-grouped-li">${track.name}</li>
-                            `)}
-                          </ul>
-                        </div>
-                        `: ''
-                      }
+                    <li>
+                      <a href="./album/${i.id}">
+                        <result-item-card 
+                          heading="${i.name}"
+                          id="${i.id}"
+                          subheading="${i.genres ? i.genres.join(", ") : ''}"
+                          selected="${this._isArtistSelected(i) ? true : false}"
+                          image="${this.getImage(i.images) ? this.getImage(i.images).url : ''}"></result-item-card>
+                        </a>
                     </li>
                   `)}
                 </ul>

@@ -75,7 +75,7 @@ class ResultItemCard extends LitElement {
 
   render() {
     return html`
-      <button role="article" @click="${this.selectCard}" class="material-card">
+      <article @click="${this.selectCard}" class="material-card">
         <div class="material-card-header">
           <div class="material-card-header-image" style="background-image: url('${this.image || this.emptyImage}')">
           </div>
@@ -87,7 +87,7 @@ class ResultItemCard extends LitElement {
             </h3>
           </div>
         </div>
-      </button>
+      </article>
     `;
   }
 
@@ -102,10 +102,10 @@ class ResultItemCard extends LitElement {
   }
 
   selectCard() {
-    this.selected = !this.selected;
+    /*this.selected = !this.selected;*/
     let selectCard = new CustomEvent('select-artist', { 
       detail: { id: this.id, selected: this.selected },
-      bubbles: true, 
+      bubbles: true,
       composed: true });
     this.dispatchEvent(selectCard);
   }

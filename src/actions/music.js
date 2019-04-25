@@ -76,8 +76,7 @@ export const searchBytrack = (search, token) => (dispatch) => {
     });
 };
 
-export const selectArtist = () => (dispatch) => {
-  const id = event.detail.id;
+export const selectArtist = (id) => (dispatch) => {
 
   const url = `${API_URL}/artists/${id}/top-track`;
 
