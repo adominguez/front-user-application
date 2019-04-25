@@ -16,17 +16,20 @@ export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 
 export const navigate = (path) => (dispatch) => {
   // Extract the page name from path.
-  const page = path === '/' ? 'view1' : path.slice(1);
-
-  // Any other info you might want to extract from the path (like page type),
-  // you can do here
-  dispatch(loadPage(page));
+  const parts = path === '/' ? ['view1'] : path.slice(1).split('/');
+  const routes = {
+    id: parts[1],
+    page: parts[ 0 ]
+  }
+  
+  dispatch(loadPage( routes ));
 
   // Close the drawer - in case the *path* change came from a link in the drawer.
-  dispatch(updateDrawerState(false));
+  //dispatch(updateDrawerState(false));
 };
 
-const loadPage = (page) => (dispatch) => {
+const loadPage = (routes) => (dispatch) => {
+  let page = routes.page
   switch(page) {
     case 'view1':
       import('../components/my-view1.js').then((module) => {
@@ -37,21 +40,28 @@ const loadPage = (page) => (dispatch) => {
     case 'music':
       import('../components/music-view.js');
       break;
+    case 'album':
+      if(routes.id) {
+        import('../components/album-view.js');
+      } else {
+        window.location.replace("./music");
+      }
+      break;
     case 'view3':
       import('../components/my-view3.js');
       break;
     default:
-      page = 'view404';
+    routes.page = 'view404';
       import('../components/my-view404.js');
   }
 
-  dispatch(updatePage(page));
+  dispatch(updatePage(routes));
 };
 
-const updatePage = (page) => {
+const updatePage = (routes) => {
   return {
     type: UPDATE_PAGE,
-    page
+    routes
   };
 };
 

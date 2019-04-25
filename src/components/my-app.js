@@ -23,14 +23,9 @@ import { store } from '../store.js';
 import {
   navigate,
   updateOffline,
-  updateDrawerState
 } from '../actions/app.js';
 
 // These are the elements needed by this element.
-import '@polymer/app-layout/app-drawer/app-drawer.js';
-import '@polymer/app-layout/app-header/app-header.js';
-import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
-import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import { menuIcon } from './my-icons.js';
 import './snack-bar.js';
 
@@ -38,10 +33,10 @@ class MyApp extends connect(store)(LitElement) {
   static get properties() {
     return {
       appTitle: { type: String },
-      _page: { type: String },
-      _drawerOpened: { type: Boolean },
+      _routes: { type: Object },
       _snackbarOpened: { type: Boolean },
-      _offline: { type: Boolean }
+      _offline: { type: Boolean },
+      _artistSelected: {type: Array}
     };
   }
 
@@ -183,16 +178,17 @@ class MyApp extends connect(store)(LitElement) {
         </header>
 
         <main role="main" class="content">
-          <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
-          <music-view class="page" ?active="${this._page === 'music'}"></music-view>
-          <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
-          <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
+          <my-view1 class="page" ?active="${this._routes.page === 'view1'}"></my-view1>
+          <music-view class="page" ?active="${this._routes.page === 'music'}"></music-view>
+          <album-view class="page" ?active="${this._routes.page === 'album'}" albumId="${this._routes.id}"></album-view>
+          <my-view3 class="page" ?active="${this._routes.page === 'view3'}"></my-view3>
+          <my-view404 class="page" ?active="${this._routes.page === 'view404'}"></my-view404>
         </main>
 
         <nav class="icon-bar">
-        <a class="${this._page === 'view1' ? 'selected' : ''}" ?selected="${this._page === 'view1'}" href="/view1">Photos</a>
-        <a class="${this._page === 'music' ? 'selected' : ''}" ?selected="${this._page === 'music'}" href="/music">Music</a>
-        <a class="${this._page === 'view3' ? 'selected' : ''}" ?selected="${this._page === 'view3'}" href="/view3">Messages</a>
+        <a class="${this._routes.page === 'view1' ? 'selected' : ''}" ?selected="${this._routes.page === 'view1'}" href="/view1">Photos</a>
+        <a class="${this._routes.page === 'music' ? 'selected' : ''}" ?selected="${this._routes.page === 'music'}" href="/music">Music</a>
+        <a class="${this._routes.page === 'view3' ? 'selected' : ''}" ?selected="${this._routes.page === 'view3'}" href="/view3">Messages</a>
         </nav>
       </div>
       <snack-bar ?active="${this._snackbarOpened}">
@@ -212,7 +208,7 @@ class MyApp extends connect(store)(LitElement) {
     installRouter((location) => store.dispatch(navigate(decodeURIComponent(location.pathname))));
     installOfflineWatcher((offline) => store.dispatch(updateOffline(offline)));
     installMediaQueryWatcher(`(min-width: 460px)`,
-      () => store.dispatch(updateDrawerState(false)));
+      () => {});
   }
 
   updated(changedProps) {
@@ -226,19 +222,11 @@ class MyApp extends connect(store)(LitElement) {
     }
   }
 
-  _menuButtonClicked() {
-    store.dispatch(updateDrawerState(true));
-  }
-
-  _drawerOpenedChanged(e) {
-    store.dispatch(updateDrawerState(e.target.opened));
-  }
-
   stateChanged(state) {
-    this._page = state.app.page;
+    this._routes = state.app.routes;
     this._offline = state.app.offline;
     this._snackbarOpened = state.app.snackbarOpened;
-    this._drawerOpened = state.app.drawerOpened;
+    //this._artistSelected = state.music.artistSelected
   }
 }
 

@@ -17,7 +17,7 @@ import {
 } from '../actions/app.js';
 
 const INITIAL_STATE = {
-  page: '',
+  routes: {},
   offline: false,
   drawerOpened: false,
   snackbarOpened: false,
@@ -28,7 +28,7 @@ const app = (state = INITIAL_STATE, action) => {
     case UPDATE_PAGE:
       return {
         ...state,
-        page: action.page
+        routes: action.routes
       };
     case UPDATE_OFFLINE:
       return {
