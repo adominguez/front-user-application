@@ -23,7 +23,7 @@ class AppLoading extends LitElement {
         }
         .loading {
             width: 100%;
-            max-width: 700px;
+            max-width: 300px;
             margin: 0 auto;
             padding: 0;
             position: relative;
@@ -70,7 +70,7 @@ class AppLoading extends LitElement {
     return html`
         <div class="loading">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                width="350" height="200" viewBox="0 0 334 120" enable-background="new 0 0 334 120" xml:space="preserve">
+                width="300" height="200" viewBox="0 0 334 120" enable-background="new 0 0 334 120" xml:space="preserve">
                 <filter id="blur-filter" x="-1" y="0" width="200" height="200">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
                 </filter>
