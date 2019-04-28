@@ -97,7 +97,6 @@ class ResultItemCard extends LitElement {
   }
 
   render() {
-    console.log('this.closeLink', this.closeLink)
     return html`
       <article @click="${this.selectCard}" class="material-card">
         <div class="material-card-header">

@@ -4,6 +4,7 @@ export const GET_TOKEN = 'GET_TOKEN';
 export const EMPTY_RESULTS = 'EMPTY_RESULTS';
 export const SELECT_ARTIST = 'SELECT_ARTIST';
 export const GET_ARTIST_BY_ID = 'GET_ARTIST_BY_ID';
+export const ADD_TRACK_TO_PLAYLIST = 'ADD_TRACK_TO_PLAYLIST';
 
 import {API_URL} from '../const.js'
 
@@ -123,5 +124,30 @@ export const getArtistById = (id) => (dispatch) => {
         type: GET_ARTIST_BY_ID,
         artist
       });
+    });
+}
+
+export const addTrackToPlaylist = (trackId) => (dispatch) => {
+
+  const url = `${API_URL}/add-track-to-playlist/${trackId}`;
+
+  const options = {
+    method: 'GET',
+    cache: 'default',
+    json: true
+  };
+
+  const myRequest = new Request(url, options);
+
+  fetch(myRequest)
+    .then(function (response) {
+      debugger;
+      return response.json();
+    }).then(function (artist) {
+      debugger;
+      /* dispatch({
+        type: ADD_TRACK_TO_PLAYLIST,
+        artist
+      }); */
     });
 }

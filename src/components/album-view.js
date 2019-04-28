@@ -16,7 +16,7 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
 // These are the actions needed by this element.
-import { selectArtist, getArtistById } from '../actions/music.js';
+import { selectArtist, getArtistById, addTrackToPlaylist } from '../actions/music.js';
 
 // We are lazy loading its reducer.
 import music from '../reducers/music.js';
@@ -65,7 +65,8 @@ class AlbumView extends connect(store)(PageViewElement) {
       ${this._artistInfo && html`<result-item-card  closeLink="./music" heading="${this._artistInfo.name}" subheading="${this._artistInfo.genres ? this._artistInfo.genres.join(", ") : ''}" image="${this.getImage(this._artistInfo.images) ? this.getImage(this._artistInfo.images).url : ''}"></result-item-card>`}
       <ul>${this._artistSelected.tracks ? this._artistSelected.tracks.map(track => html`
         <li>
-          ${track.name} - ${track.id}
+          <div>${track.name}</div>
+          <button @click="${this._addTrackToPlaylist.bind(this, track.id)}">Add to playlist</button>
         </li>
       </ul>`) : 'La lista está vacía o ha podido haber algún error, Prueba a realizar otra búsqueda o vuelve a intentarlo más tarde'}` : `Loading...`}
       
@@ -77,12 +78,16 @@ class AlbumView extends connect(store)(PageViewElement) {
   }
 
   _selectArtist() {
-    store.dispatch(getArtistById(this.albumId))
-    store.dispatch(selectArtist(this.albumId))
+    store.dispatch(getArtistById(this.albumId));
+    store.dispatch(selectArtist(this.albumId));
   }
 
   getImage(images) {
     return images && images.find(image => image.width === 64 || image.width === 160 || image.width === 320)
+  }
+
+  _addTrackToPlaylist(trackId) {
+    store.dispatch(addTrackToPlaylist(trackId));
   }
 
   // This is called every time something is updated in the store.
