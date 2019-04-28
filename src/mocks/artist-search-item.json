@@ -1,0 +1,29 @@
+{
+    "external_urls": {
+        "spotify": "https://open.spotify.com/artist/2fiiGUBgPsIKDCE0bTthnl"
+    },
+    "followers": {
+        "href": null,
+        "total": 472970
+    },
+    "genres": ["ska", "spanish rock"],
+    "href": "https://api.spotify.com/v1/artists/2fiiGUBgPsIKDCE0bTthnl",
+    "id": "2fiiGUBgPsIKDCE0bTthnl",
+    "images": [{
+        "height": 640,
+        "url": "https://i.scdn.co/image/75772dbde0901ec0104e0d589746e12cb1eb2c40",
+        "width": 640
+    }, {
+        "height": 320,
+        "url": "https://i.scdn.co/image/cc9e690c4f3d65de81e2f9ba40affbc0a2e0b356",
+        "width": 320
+    }, {
+        "height": 160,
+        "url": "https://i.scdn.co/image/b451ed0513c0db0309c4ef568ad042d8400fc81e",
+        "width": 160
+    }],
+    "name": "Ska-P",
+    "popularity": 67,
+    "type": "artist",
+    "uri": "spotify:artist:2fiiGUBgPsIKDCE0bTthnl"
+}

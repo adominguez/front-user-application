@@ -1,0 +1,673 @@
+{
+    "tracks": [{
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/3msSCqpQLoY0nl4RTSf1Is"
+            },
+            "href": "https://api.spotify.com/v1/albums/3msSCqpQLoY0nl4RTSf1Is",
+            "id": "3msSCqpQLoY0nl4RTSf1Is",
+            "images": [{
+                "height": 637,
+                "url": "https://i.scdn.co/image/e8dd68e88830488270c4bb7d23f713677136e54f",
+                "width": 640
+            }, {
+                "height": 299,
+                "url": "https://i.scdn.co/image/d2d8137e35026973b121852d660e00c50a3c1656",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/d60eed73665e5a146bff044c0cfb993896f3341f",
+                "width": 64
+            }],
+            "name": "Agila",
+            "release_date": "1996",
+            "release_date_precision": "year",
+            "total_tracks": 14,
+            "type": "album",
+            "uri": "spotify:album:3msSCqpQLoY0nl4RTSf1Is"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 281666,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5019614003"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/5HSpMRUC4m3L3q48to2Kmu"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5HSpMRUC4m3L3q48to2Kmu",
+        "id": "5HSpMRUC4m3L3q48to2Kmu",
+        "is_local": false,
+        "is_playable": true,
+        "name": "So payaso",
+        "popularity": 59,
+        "preview_url": "https://p.scdn.co/mp3-preview/8560467b35d57b53ff4a1e92f4582aa8c7b8f98e?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 4,
+        "type": "track",
+        "uri": "spotify:track:5HSpMRUC4m3L3q48to2Kmu"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/3FgvMxabfL5UtlcPzASEhh"
+            },
+            "href": "https://api.spotify.com/v1/albums/3FgvMxabfL5UtlcPzASEhh",
+            "id": "3FgvMxabfL5UtlcPzASEhh",
+            "images": [{
+                "height": 640,
+                "url": "https://i.scdn.co/image/65bc9975c4fbce1acf8f691e9083db6c297de6d2",
+                "width": 640
+            }, {
+                "height": 300,
+                "url": "https://i.scdn.co/image/aab7284b5ee455369eff0e092821f9b1cbcdbfab",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/6ea46a83df340d4658727da4c0e6df640bedc244",
+                "width": 64
+            }],
+            "name": "Yo, Minoria Absoluta",
+            "release_date": "2002-03-01",
+            "release_date_precision": "day",
+            "total_tracks": 10,
+            "type": "album",
+            "uri": "spotify:album:3FgvMxabfL5UtlcPzASEhh"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 243320,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5010200021"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/4kJP8Z888wREJ8bRMWNMuk"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4kJP8Z888wREJ8bRMWNMuk",
+        "id": "4kJP8Z888wREJ8bRMWNMuk",
+        "is_local": false,
+        "is_playable": true,
+        "name": "La vereda de la puerta de atrás",
+        "popularity": 59,
+        "preview_url": "https://p.scdn.co/mp3-preview/27fe693885ef7249a446a1e778e2c7b51153528a?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 2,
+        "type": "track",
+        "uri": "spotify:track:4kJP8Z888wREJ8bRMWNMuk"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/5QHJB2blBbAL8BjrD9hrhG"
+            },
+            "href": "https://api.spotify.com/v1/albums/5QHJB2blBbAL8BjrD9hrhG",
+            "id": "5QHJB2blBbAL8BjrD9hrhG",
+            "images": [{
+                "height": 637,
+                "url": "https://i.scdn.co/image/e69a081f833086461a85b9ed07cf688dd19b53b2",
+                "width": 640
+            }, {
+                "height": 299,
+                "url": "https://i.scdn.co/image/d3c047a066a1ea2e22b617df83fd2aff683b7735",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/f05bd6a5f6579a0a928b52ed0118b12fd8a0a28e",
+                "width": 64
+            }],
+            "name": "Canciones Prohibidas",
+            "release_date": "1998-06-08",
+            "release_date_precision": "day",
+            "total_tracks": 10,
+            "type": "album",
+            "uri": "spotify:album:5QHJB2blBbAL8BjrD9hrhG"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 318986,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5019814000"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/4z2EeFUp5Lhai9qhHtA6IF"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4z2EeFUp5Lhai9qhHtA6IF",
+        "id": "4z2EeFUp5Lhai9qhHtA6IF",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Salir",
+        "popularity": 57,
+        "preview_url": "https://p.scdn.co/mp3-preview/2f59c92f21040e96f82572015e2de557f58d6af7?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:4z2EeFUp5Lhai9qhHtA6IF"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/3JFryzZ2dByJ7Z2Ik2fVua"
+            },
+            "href": "https://api.spotify.com/v1/albums/3JFryzZ2dByJ7Z2Ik2fVua",
+            "id": "3JFryzZ2dByJ7Z2Ik2fVua",
+            "images": [{
+                "height": 640,
+                "url": "https://i.scdn.co/image/81b780b4c2f77bf8a9d1d9bc14dedf3b10ced198",
+                "width": 640
+            }, {
+                "height": 300,
+                "url": "https://i.scdn.co/image/67a95321ae473cc0af1b60bcb711945a9b281ad1",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/e914967fea6b311087d55e42d2e80e8b5f97990d",
+                "width": 64
+            }],
+            "name": "Material defectuoso",
+            "release_date": "2011-05-24",
+            "release_date_precision": "day",
+            "total_tracks": 6,
+            "type": "album",
+            "uri": "spotify:album:3JFryzZ2dByJ7Z2Ik2fVua"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 516666,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5151100386"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/2x59pa3xDf8hHZ4N3f5fGQ"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2x59pa3xDf8hHZ4N3f5fGQ",
+        "id": "2x59pa3xDf8hHZ4N3f5fGQ",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Si te vas...",
+        "popularity": 57,
+        "preview_url": "https://p.scdn.co/mp3-preview/b49b9eca922c751a834bf3a8dbdcc254db3aa879?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 4,
+        "type": "track",
+        "uri": "spotify:track:2x59pa3xDf8hHZ4N3f5fGQ"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/1GYJUlbVr5FuNU7awwMGzu"
+            },
+            "href": "https://api.spotify.com/v1/albums/1GYJUlbVr5FuNU7awwMGzu",
+            "id": "1GYJUlbVr5FuNU7awwMGzu",
+            "images": [{
+                "height": 640,
+                "url": "https://i.scdn.co/image/45914386b8c3297b0d860c0124491ea3208b8ba7",
+                "width": 640
+            }, {
+                "height": 300,
+                "url": "https://i.scdn.co/image/db34f366cf55515ad4102f1133cc6ac888b01351",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/f28a220b3143e924c8c9e0b9776489207e76adb1",
+                "width": 64
+            }],
+            "name": "La ley innata",
+            "release_date": "2008-08-26",
+            "release_date_precision": "day",
+            "total_tracks": 6,
+            "type": "album",
+            "uri": "spotify:album:1GYJUlbVr5FuNU7awwMGzu"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 462013,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5150800589"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/1aDeaDooAd79p2sdImGG4a"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1aDeaDooAd79p2sdImGG4a",
+        "id": "1aDeaDooAd79p2sdImGG4a",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Dulce introduccion al caos",
+        "popularity": 55,
+        "preview_url": "https://p.scdn.co/mp3-preview/ee5cac4bf374a9c1fc188957870818e89ace9e8e?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:1aDeaDooAd79p2sdImGG4a"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/3FgvMxabfL5UtlcPzASEhh"
+            },
+            "href": "https://api.spotify.com/v1/albums/3FgvMxabfL5UtlcPzASEhh",
+            "id": "3FgvMxabfL5UtlcPzASEhh",
+            "images": [{
+                "height": 640,
+                "url": "https://i.scdn.co/image/65bc9975c4fbce1acf8f691e9083db6c297de6d2",
+                "width": 640
+            }, {
+                "height": 300,
+                "url": "https://i.scdn.co/image/aab7284b5ee455369eff0e092821f9b1cbcdbfab",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/6ea46a83df340d4658727da4c0e6df640bedc244",
+                "width": 64
+            }],
+            "name": "Yo, Minoria Absoluta",
+            "release_date": "2002-03-01",
+            "release_date_precision": "day",
+            "total_tracks": 10,
+            "type": "album",
+            "uri": "spotify:album:3FgvMxabfL5UtlcPzASEhh"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 207986,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5010200022"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/6BxCmy6vGbuOckxg6YfQOW"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6BxCmy6vGbuOckxg6YfQOW",
+        "id": "6BxCmy6vGbuOckxg6YfQOW",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Stand By",
+        "popularity": 53,
+        "preview_url": "https://p.scdn.co/mp3-preview/098f79885f612b10f87b3dfbb963070710e671b7?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 4,
+        "type": "track",
+        "uri": "spotify:track:6BxCmy6vGbuOckxg6YfQOW"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/75NdpQFqXPKVRJn8bqEADO"
+            },
+            "href": "https://api.spotify.com/v1/albums/75NdpQFqXPKVRJn8bqEADO",
+            "id": "75NdpQFqXPKVRJn8bqEADO",
+            "images": [{
+                "height": 640,
+                "url": "https://i.scdn.co/image/ba9d620cbdb78677ee19b471c3ffbbd47535ef75",
+                "width": 640
+            }, {
+                "height": 300,
+                "url": "https://i.scdn.co/image/0b18849696a2e646eff118b4dd9890c4b6d1ea3b",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/5141a349f617de2992d731d129fc3eb5f916eff5",
+                "width": 64
+            }],
+            "name": "Para todos los publicos",
+            "release_date": "2013-11-08",
+            "release_date_precision": "day",
+            "total_tracks": 9,
+            "type": "album",
+            "uri": "spotify:album:75NdpQFqXPKVRJn8bqEADO"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 494773,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5151301880"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/6DWAOntbxkpsgKs9iJDEhW"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6DWAOntbxkpsgKs9iJDEhW",
+        "id": "6DWAOntbxkpsgKs9iJDEhW",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Locura transitoria",
+        "popularity": 52,
+        "preview_url": "https://p.scdn.co/mp3-preview/36ea482419f9c6a30cbc73b7b33e76326b5afb36?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:6DWAOntbxkpsgKs9iJDEhW"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/5QHJB2blBbAL8BjrD9hrhG"
+            },
+            "href": "https://api.spotify.com/v1/albums/5QHJB2blBbAL8BjrD9hrhG",
+            "id": "5QHJB2blBbAL8BjrD9hrhG",
+            "images": [{
+                "height": 637,
+                "url": "https://i.scdn.co/image/e69a081f833086461a85b9ed07cf688dd19b53b2",
+                "width": 640
+            }, {
+                "height": 299,
+                "url": "https://i.scdn.co/image/d3c047a066a1ea2e22b617df83fd2aff683b7735",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/f05bd6a5f6579a0a928b52ed0118b12fd8a0a28e",
+                "width": 64
+            }],
+            "name": "Canciones Prohibidas",
+            "release_date": "1998-06-08",
+            "release_date_precision": "day",
+            "total_tracks": 10,
+            "type": "album",
+            "uri": "spotify:album:5QHJB2blBbAL8BjrD9hrhG"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 359546,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5019814003"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/2dfqWgYQVWqF1DJUWc8EoL"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2dfqWgYQVWqF1DJUWc8EoL",
+        "id": "2dfqWgYQVWqF1DJUWc8EoL",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Golfa",
+        "popularity": 52,
+        "preview_url": "https://p.scdn.co/mp3-preview/2a4302f8d03c45839a668de568d3c8a8fd8785df?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 4,
+        "type": "track",
+        "uri": "spotify:track:2dfqWgYQVWqF1DJUWc8EoL"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/3FgvMxabfL5UtlcPzASEhh"
+            },
+            "href": "https://api.spotify.com/v1/albums/3FgvMxabfL5UtlcPzASEhh",
+            "id": "3FgvMxabfL5UtlcPzASEhh",
+            "images": [{
+                "height": 640,
+                "url": "https://i.scdn.co/image/65bc9975c4fbce1acf8f691e9083db6c297de6d2",
+                "width": 640
+            }, {
+                "height": 300,
+                "url": "https://i.scdn.co/image/aab7284b5ee455369eff0e092821f9b1cbcdbfab",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/6ea46a83df340d4658727da4c0e6df640bedc244",
+                "width": 64
+            }],
+            "name": "Yo, Minoria Absoluta",
+            "release_date": "2002-03-01",
+            "release_date_precision": "day",
+            "total_tracks": 10,
+            "type": "album",
+            "uri": "spotify:album:3FgvMxabfL5UtlcPzASEhh"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 322880,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5010200020"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/30M1XJhkJdkGrgXZ1TpXSS"
+        },
+        "href": "https://api.spotify.com/v1/tracks/30M1XJhkJdkGrgXZ1TpXSS",
+        "id": "30M1XJhkJdkGrgXZ1TpXSS",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Puta",
+        "popularity": 51,
+        "preview_url": "https://p.scdn.co/mp3-preview/0dfc6524b164d51acbbd55ad39da2aaf365ee256?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 8,
+        "type": "track",
+        "uri": "spotify:track:30M1XJhkJdkGrgXZ1TpXSS"
+    }, {
+        "album": {
+            "album_type": "album",
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+                },
+                "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+                "id": "3bgsNtcf5d5h9jbQbohfBK",
+                "name": "Extremoduro",
+                "type": "artist",
+                "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+            }],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/3msSCqpQLoY0nl4RTSf1Is"
+            },
+            "href": "https://api.spotify.com/v1/albums/3msSCqpQLoY0nl4RTSf1Is",
+            "id": "3msSCqpQLoY0nl4RTSf1Is",
+            "images": [{
+                "height": 637,
+                "url": "https://i.scdn.co/image/e8dd68e88830488270c4bb7d23f713677136e54f",
+                "width": 640
+            }, {
+                "height": 299,
+                "url": "https://i.scdn.co/image/d2d8137e35026973b121852d660e00c50a3c1656",
+                "width": 300
+            }, {
+                "height": 64,
+                "url": "https://i.scdn.co/image/d60eed73665e5a146bff044c0cfb993896f3341f",
+                "width": 64
+            }],
+            "name": "Agila",
+            "release_date": "1996",
+            "release_date_precision": "year",
+            "total_tracks": 14,
+            "type": "album",
+            "uri": "spotify:album:3msSCqpQLoY0nl4RTSf1Is"
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3bgsNtcf5d5h9jbQbohfBK"
+            },
+            "href": "https://api.spotify.com/v1/artists/3bgsNtcf5d5h9jbQbohfBK",
+            "id": "3bgsNtcf5d5h9jbQbohfBK",
+            "name": "Extremoduro",
+            "type": "artist",
+            "uri": "spotify:artist:3bgsNtcf5d5h9jbQbohfBK"
+        }],
+        "disc_number": 1,
+        "duration_ms": 187333,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "ES5019614002"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/3qwi91kUb1BJ62DRTfcqv8"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3qwi91kUb1BJ62DRTfcqv8",
+        "id": "3qwi91kUb1BJ62DRTfcqv8",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Sucede",
+        "popularity": 50,
+        "preview_url": "https://p.scdn.co/mp3-preview/93c0147047668c3b24518da75726b47d60b5e0b5?cid=afa5db9e6e4e4840ad591f58dc5b6a2d",
+        "track_number": 3,
+        "type": "track",
+        "uri": "spotify:track:3qwi91kUb1BJ62DRTfcqv8"
+    }]
+}
