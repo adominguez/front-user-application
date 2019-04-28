@@ -27,7 +27,9 @@ class ResultItemCard extends LitElement {
       /* selected card */
       selected: { type: Boolean },
       /* id card */
-      id: {type: String}
+      id: {type: String},
+      /* Link to close */
+      closeLink: {type: String}
     }
   }
 
@@ -49,6 +51,7 @@ class ResultItemCard extends LitElement {
           color: #fff;
           display: flex;
           line-height: 1;
+          position: relative;
         }
         .material-card-header-image {
           flex-shrink: 0;
@@ -69,16 +72,38 @@ class ResultItemCard extends LitElement {
           font-size: 16px;
           font-weight: 400;
         }
+        .close-button {
+          font-weight: 700;
+          font-family: 'Raleway', sans-serif;
+          font-size: 30px;
+          position: absolute;
+          right: 0.2em;
+          top: 0.2em;
+          opacity: 1;
+          transition-delay: 0.6s;
+          transition: opacity 0.2s ease;
+          color: #fff;
+          background-color: rgba(0, 0, 0, 0.2);
+          border: 0;
+          border-radius: 50%;
+          width:40px;
+          height: 40px;
+          text-align:center;
+          text-decoration: none;
+          line-height: 1.3;
+        }
       `
     ];
   }
 
   render() {
+    console.log('this.closeLink', this.closeLink)
     return html`
       <article @click="${this.selectCard}" class="material-card">
         <div class="material-card-header">
           <div class="material-card-header-image" style="background-image: url('${this.image || this.emptyImage}')">
           </div>
+          ${this.closeLink !== '' ? html`<a href="${this.closeLink}" class="close-button">X</a>` : ''}
           <div class="material-card-header-heading">
             <h2>${this.heading}</h2>
             <h3>
@@ -99,6 +124,7 @@ class ResultItemCard extends LitElement {
     this.image = null;
     this.emptyImage = '../../images/assets/empty-image.svg';
     this.selected = false;
+    this.closeLink = '';
   }
 
   selectCard() {

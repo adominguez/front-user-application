@@ -3,6 +3,7 @@ export const SEARCH_BY_TRACK = 'SEARCH_BY_TRACK';
 export const GET_TOKEN = 'GET_TOKEN';
 export const EMPTY_RESULTS = 'EMPTY_RESULTS';
 export const SELECT_ARTIST = 'SELECT_ARTIST';
+export const GET_ARTIST_BY_ID = 'GET_ARTIST_BY_ID';
 
 import {API_URL} from '../const.js'
 
@@ -98,6 +99,29 @@ export const selectArtist = (id) => (dispatch) => {
           id,
           ...tracks
         },
+      });
+    });
+}
+
+export const getArtistById = (id) => (dispatch) => {
+
+  const url = `${API_URL}/artist-by-id/${id}`;
+
+  const options = {
+    method: 'GET',
+    cache: 'default',
+    json: true
+  };
+
+  const myRequest = new Request(url, options);
+
+  fetch(myRequest)
+    .then(function (response) {
+      return response.json();
+    }).then(function (artist) {
+      dispatch({
+        type: GET_ARTIST_BY_ID,
+        artist
       });
     });
 }

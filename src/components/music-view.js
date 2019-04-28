@@ -26,7 +26,7 @@ store.addReducers({
 
 // These are the elements needed by this element.
 import './app-loading.js';
-import './result-item-card.js'
+import './result-item-card.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -231,6 +231,21 @@ class MusicView extends connect(store)(PageViewElement) {
         .close-button.button-artist, .close-button.button-track {
           opacity: 1;
         }
+        .empty-view-error {
+          width: 100%;
+          text-align: center;
+          display: block;
+          color: #c05e2b;
+          padding: 10px 0;
+          font-weight: bold;
+        }
+        .empty-view {
+          background-image: url('../../images/assets/Empty-list.svg');
+          width: 100%;
+          height: 250px;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
       </style>
 
       <div class="content-view ${this._methodOfSearch}">
@@ -263,7 +278,7 @@ class MusicView extends connect(store)(PageViewElement) {
             <div class="search-results">
               <app-loading ?hidden="${!this._loading}"></app-loading>
               <div class="result">
-                <ul class="ul-result" ?hidden="${this._loading}">
+                <ul class="ul-result" ?hidden="${this._loading || (this._results && this._results['artists'].items.length === 0)}">
                   ${this._results && this._results['artists'].items.map(i => html`
                     <li>
                       <a href="./album/${i.id}">
@@ -277,6 +292,12 @@ class MusicView extends connect(store)(PageViewElement) {
                     </li>
                   `)}
                 </ul>
+                ${(this._results && !this._loading) && this._results['artists'].items.length === 0 ? html`
+                  <span class="empty-view-error">No hay resultados para este artista.<br>
+                  Prueba con otra búsqueda</span>
+                  <div class="empty-view">
+                  </div>
+                ` : ''}
               </div>
             </div>`
           : ``}
@@ -316,10 +337,10 @@ class MusicView extends connect(store)(PageViewElement) {
   _valueChange(value) {
     if(this._inputValue !== value.currentTarget.value) {
       this._inputValue = value.currentTarget.value;
-  
+      
       if(value.currentTarget.value.length >= this._minCharacterForSearch ) {
         this._loading = true;
-  
+        
         if (globalTimeout != null) {
           clearTimeout(globalTimeout);
         }

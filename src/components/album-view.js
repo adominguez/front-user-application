@@ -16,13 +16,16 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
 // These are the actions needed by this element.
-import { selectArtist } from '../actions/music.js';
+import { selectArtist, getArtistById } from '../actions/music.js';
 
 // We are lazy loading its reducer.
 import music from '../reducers/music.js';
 store.addReducers({
   music
 });
+
+// These are the elements needed by this element.
+import './result-item-card.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -35,7 +38,8 @@ class AlbumView extends connect(store)(PageViewElement) {
        * this object has a selected artist and it´s must be filled when an artist card is selected
        */
       _artistSelected: {type: Array},
-      albumId: {type: String}
+      albumId: {type: String},
+      _artistInfo: {type: Object}
     };
   }
 
@@ -53,30 +57,38 @@ class AlbumView extends connect(store)(PageViewElement) {
   render() {
     return html`
       <style>
+        :host {
+          background-color: #47af7c;
+        }
       </style>
-
-
-      <ul>
-        ${this._artistSelected ? html`${this._artistSelected.tracks ? this._artistSelected.tracks.map(track => html`
-          <li>
-            ${track.name}
-          </li>
-        `) : 'La lista está vacía Prueba a realizar otra búsqueda'}` : `Loading...`}
-      </ul>
+      ${this._artistSelected ? html`
+      ${this._artistInfo && html`<result-item-card  closeLink="./music" heading="${this._artistInfo.name}" subheading="${this._artistInfo.genres ? this._artistInfo.genres.join(", ") : ''}" image="${this.getImage(this._artistInfo.images) ? this.getImage(this._artistInfo.images).url : ''}"></result-item-card>`}
+      <ul>${this._artistSelected.tracks ? this._artistSelected.tracks.map(track => html`
+        <li>
+          ${track.name} - ${track.id}
+        </li>
+      </ul>`) : 'La lista está vacía o ha podido haber algún error, Prueba a realizar otra búsqueda o vuelve a intentarlo más tarde'}` : `Loading...`}
+      
     `;
-  }
+  } 
 
   firstUpdated() {
     this._selectArtist();
   }
 
   _selectArtist() {
+    store.dispatch(getArtistById(this.albumId))
     store.dispatch(selectArtist(this.albumId))
+  }
+
+  getImage(images) {
+    return images && images.find(image => image.width === 64 || image.width === 160 || image.width === 320)
   }
 
   // This is called every time something is updated in the store.
   stateChanged(state) {
-    this._artistSelected = state.music.artistSelected
+    this._artistSelected = state.music.artistSelected;
+    this._artistInfo = state.music.artist;
   }
 
   updated(changedProperties) {
